@@ -26,7 +26,7 @@ do return {
 
         ts.install(parsers):wait(30000)
 
-        vim.api.nvim_create_auto:cmd("FileType", {
+        vim.api.nvim_create_autocmd("FileType", {
             pattern = {
                 "vim",
                 "help",
