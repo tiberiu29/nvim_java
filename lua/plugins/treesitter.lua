@@ -1,20 +1,45 @@
 do return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
+        local parsers = {
+            "vim",
+            "vimdoc",
+            "lua",
+            "java",
+            "json",
+            "tsx",
+            "markdown",
+            "markdown_inline",
+            "gitignore",
+        }
+
+        local ts = require("nvim-treesitter")
+
+        ts.setup({
+            install_dir = vim.fn.stdpath("data") .. "/site",
+        })
+
         require("nvim-treesitter.install").compilers = { "gcc" }
 
-        local ts_config = require("nvim-treesitter.config")
+        ts.install(parsers):wait(30000)
 
-        ts_config.setup({
-            ensure_installed = {
-                "vim", "vimdoc", "lua", "java",
-                "json", "tsx", "markdown", "markdown_inline", "gitignore"
+        vim.api.nvim_create_auto:cmd("FileType", {
+            pattern = {
+                "vim",
+                "help",
+                "lua",
+                "java",
+                "json",
+                "typescriptreact",
+                "markdown",
+                "gitignore",
             },
-            highlight = {
-                enable = true,
-            },
+            callback = function()
+                vim.treesitter.start()
+            end,
         })
     end,
 } end
-
