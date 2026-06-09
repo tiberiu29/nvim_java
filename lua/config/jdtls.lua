@@ -51,12 +51,17 @@ local function java_keymaps()
 
     -- Extract to a variable
     vim.keymap.set('n', '<leader>Jv', "<Cmd> lua require('jdtls').extract_variable()<CR>", {
-        desc = "[J]ava [E]xtract Variable"
+        desc = "[J]ava Extract [v]ariable"
     })
     vim.keymap.set('v', '<leader>Jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>", {
-        desc = "[J]ava [E]xtract Variable"
+        desc = "[J]ava Extract [v]ariable"
     })
-
+    vim.keymap.set('n', '<leader>Jm', "<Cmd> lua require('jdtls').extract_method()<CR>", {
+        desc = "[J]ava Extract [m]ethod"
+    })
+    vim.keymap.set('v', '<leader>Jm', "<Esc><Cmd> lua require('jdtls').extract_method()<CR>", {
+        desc = "[J]ava Extract [m]ethod"
+    })
     -- Extract to a constant
     vim.keymap.set('n', '<leader>JC', "<Cmd> lua require('jdtls').extract_constant()<CR>", {
         desc = "[J]ava Extract [C]onstant"
