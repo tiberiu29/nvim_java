@@ -1,0 +1,123 @@
+return {
+    'NickJAllen/java-helpers.nvim',
+    cmd = {'JavaHelpersNewFile', 'JavaHelpersPickStackTraceLine', 'JavaHelpersPickStackTrace',
+           'JavaHelpersGoToStackTraceLine', 'JavaHelpersGoUpStackTrace', 'JavaHelpersGoDownStackTrace',
+           'JavaHelpersGoToBottomOfStackTrace', 'JavaHelpersGoToTopOfStackTrace', 'JavaHelpersGoToNextStackTrace',
+           'JavaHelpersGoToPrevStackTrace', 'JavaHelpersSendStackTraceToQuickfix', 'JavaHelpersDeobfuscate',
+           'JavaHelpersSelectObfuscationFile', 'JavaHelpersForgetObfuscationFile'},
+
+    ---@type JavaHelpers.Config
+    opts = {
+        new_file = {
+            ---Each template has a name and some template source code.
+            ---${package_decl} and ${name} will be replaced with the package declaration and name for the Java type being created.
+            ---If ${pos} is provided then the cursor will be positioned there ready to type.
+            templates = {},
+
+            ---Defines patters to recognize Java source directories in order to determine the package name.
+            java_source_dirs = {'src/main/java', 'src/test/java', 'src'},
+
+            ---If true then newly created Java files will be formatted
+            should_format = true
+        },
+
+        stack_trace = {
+            -- Command that is used to deobfuscate stack traces
+            deobfuscate_command = 'retrace',
+
+            -- Directory that will be used to select an obfuscation mapping file, if nil or empty the current directory will be used
+            obfuscation_mappings_dir = vim.uv.os_homedir() .. '/.obfuscation'
+        }
+    },
+    keys = { -- New file creation
+    {
+        '<leader>jn',
+        ':JavaHelpersNewFile<cr>',
+        desc = 'New Java Type'
+    }, {
+        '<leader>jc',
+        ':JavaHelpersNewFile Class<cr>',
+        desc = 'New Java Class'
+    }, {
+        '<leader>ji',
+        ':JavaHelpersNewFile Interface<cr>',
+        desc = 'New Java Interface'
+    }, {
+        '<leader>ja',
+        ':JavaHelpersNewFile Abstract Class<cr>',
+        desc = 'New Abstract Java Class'
+    }, {
+        '<leader>jr',
+        ':JavaHelpersNewFile Record<cr>',
+        desc = 'New Java Record'
+    }, {
+        '<leader>je',
+        ':JavaHelpersNewFile Enum<cr>',
+        desc = 'New Java Enum'
+    }, -- Stack trace navigation
+    {
+        '<leader>jg',
+        ':JavaHelpersGoToStackTraceLine<cr>',
+        desc = 'Go to Java stack trace line'
+    }, {
+        '<leader>jG',
+        ':JavaHelpersGoToStackTraceLine +<cr>',
+        desc = 'Go to Java stack trace line on Clipboard'
+    }, {
+        '<leader>jp',
+        ':JavaHelpersPickStackTraceLine<cr>',
+        desc = 'Pick Java stack trace line'
+    }, {
+        '<leader>jP',
+        ':JavaHelpersPickStackTraceLine +<cr>',
+        desc = 'Pick Java stack trace line from Clipboard'
+    }, {
+        '<leader>js',
+        ':JavaHelpersPickStackTrace<cr>',
+        desc = 'Pick Java stack trace in current file'
+    }, {
+        '[j',
+        ':JavaHelpersGoUpStackTrace<cr>',
+        desc = 'Go up Java stack trace'
+    }, {
+        ']j',
+        ':JavaHelpersGoDownStackTrace<cr>',
+        desc = 'Go down Java stack trace'
+    }, {
+        '[J',
+        ':JavaHelpersGoToPrevStackTrace<cr>',
+        desc = 'Go to previous Java stack trace'
+    }, {
+        ']J',
+        ':JavaHelpersGoToNextStackTrace<cr>',
+        desc = 'Go to next Java stack trace'
+    }, {
+        '<leader>jt',
+        ':JavaHelpersGoToTopOfStackTrace<cr>',
+        desc = 'Go to top of Java stack trace'
+    }, {
+        '<leader>jb',
+        ':JavaHelpersGoToBottomOfStackTrace<cr>',
+        desc = 'Go to bottom of Java stack trace'
+    }, {
+        '<leader>jq',
+        ':JavaHelpersSendStackTraceToQuickfix<cr>',
+        desc = 'Send Java stack trace to quickfix list'
+    }, {
+        '<leader>jd',
+        ':JavaHelpersDeobfuscate<cr>',
+        desc = 'Deofuscate Java stack trace'
+    }, {
+        '<leader>jD',
+        ':JavaHelpersDeobfuscate +<cr>',
+        desc = 'Deofuscate Java stack trace on Clipboard'
+    }, {
+        '<leader>jo',
+        ':JavaHelpersSelectObfuscationFile<cr>',
+        desc = 'Select obfuscation file'
+    }},
+    dependencies = {'nvim-lua/plenary.nvim',
+
+    -- This is only needed if you want to use the JavaHelpersPickStackTraceLine or JavaHelpersSelectObfuscationFile commands (but highly recommended)
+                    'folke/snacks.nvim'}
+}
