@@ -36,3 +36,10 @@ vim.opt.cursorline = true -- highlight current line
 vim.opt.hlsearch = true -- highlight all matches in search
 vim.opt.ignorecase = true -- ignore case in search
 vim.opt.smartcase = true -- match case if explicitely stated
+
+vim.diagnostic.config({
+    virtual_text = true,
+    virtual_lines = false,
+    signs = true,
+    underline = true
+})
