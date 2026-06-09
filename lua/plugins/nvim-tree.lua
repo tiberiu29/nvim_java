@@ -7,6 +7,7 @@ return {
             -- replace netrw
             hijack_netrw = true,
             auto_reload_on_write = true,
+            sync_root_with_cwd = true,
         })
     end
 
