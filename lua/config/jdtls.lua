@@ -91,7 +91,25 @@ local function setup_jdtls()
     -- Define how to find the root of a project for jdtls. Search for git/nvm/poms/gradle/etc..
     local root_dir = require("jdtls.setup").find_root({"pom.xml", "build.gradle", "gradlew", "mvnw"})
     local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspaces/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = {
+        workspace = {
+            configuration = true
+        },
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = false
+                }
+            }
+        }
+    }
+
+    -- APPEND CMP capabilities 
+    local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+    for k, v in pairs(cmp_capabilities) do
+        capabilities[k] = v
+    end
+
     capabilities.workspace.configuration = true
     capabilities.textDocument.completion.completionItem.snippetSupport = false
 
