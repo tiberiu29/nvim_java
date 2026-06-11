@@ -31,91 +31,23 @@ return {
     },
     keys = { -- New file creation
     {
-        '<leader>jn',
-        ':JavaHelpersNewFile<cr>',
-        desc = 'New Java Type'
-    }, {
-        '<leader>jc',
+        '<leader>Jc',
         ':JavaHelpersNewFile Class<cr>',
         desc = 'New Java Class'
     }, {
-        '<leader>ji',
+        '<leader>Ji',
         ':JavaHelpersNewFile Interface<cr>',
         desc = 'New Java Interface'
     }, {
-        '<leader>ja',
-        ':JavaHelpersNewFile Abstract Class<cr>',
-        desc = 'New Abstract Java Class'
-    }, {
-        '<leader>jr',
+        '<leader>Jr',
         ':JavaHelpersNewFile Record<cr>',
         desc = 'New Java Record'
     }, {
-        '<leader>je',
+        '<leader>Je',
         ':JavaHelpersNewFile Enum<cr>',
         desc = 'New Java Enum'
-    }, -- Stack trace navigation
-    {
-        '<leader>jg',
-        ':JavaHelpersGoToStackTraceLine<cr>',
-        desc = 'Go to Java stack trace line'
-    }, {
-        '<leader>jG',
-        ':JavaHelpersGoToStackTraceLine +<cr>',
-        desc = 'Go to Java stack trace line on Clipboard'
-    }, {
-        '<leader>jp',
-        ':JavaHelpersPickStackTraceLine<cr>',
-        desc = 'Pick Java stack trace line'
-    }, {
-        '<leader>jP',
-        ':JavaHelpersPickStackTraceLine +<cr>',
-        desc = 'Pick Java stack trace line from Clipboard'
-    }, {
-        '<leader>js',
-        ':JavaHelpersPickStackTrace<cr>',
-        desc = 'Pick Java stack trace in current file'
-    }, {
-        '[j',
-        ':JavaHelpersGoUpStackTrace<cr>',
-        desc = 'Go up Java stack trace'
-    }, {
-        ']j',
-        ':JavaHelpersGoDownStackTrace<cr>',
-        desc = 'Go down Java stack trace'
-    }, {
-        '[J',
-        ':JavaHelpersGoToPrevStackTrace<cr>',
-        desc = 'Go to previous Java stack trace'
-    }, {
-        ']J',
-        ':JavaHelpersGoToNextStackTrace<cr>',
-        desc = 'Go to next Java stack trace'
-    }, {
-        '<leader>jt',
-        ':JavaHelpersGoToTopOfStackTrace<cr>',
-        desc = 'Go to top of Java stack trace'
-    }, {
-        '<leader>jb',
-        ':JavaHelpersGoToBottomOfStackTrace<cr>',
-        desc = 'Go to bottom of Java stack trace'
-    }, {
-        '<leader>jq',
-        ':JavaHelpersSendStackTraceToQuickfix<cr>',
-        desc = 'Send Java stack trace to quickfix list'
-    }, {
-        '<leader>jd',
-        ':JavaHelpersDeobfuscate<cr>',
-        desc = 'Deofuscate Java stack trace'
-    }, {
-        '<leader>jD',
-        ':JavaHelpersDeobfuscate +<cr>',
-        desc = 'Deofuscate Java stack trace on Clipboard'
-    }, {
-        '<leader>jo',
-        ':JavaHelpersSelectObfuscationFile<cr>',
-        desc = 'Select obfuscation file'
-    }},
+    } -- Stack trace navigation
+    },
     dependencies = {'nvim-lua/plenary.nvim',
 
     -- This is only needed if you want to use the JavaHelpersPickStackTraceLine or JavaHelpersSelectObfuscationFile commands (but highly recommended)
