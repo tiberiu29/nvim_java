@@ -10,26 +10,55 @@ return {
 
         -- Setup the dap ui with default configuration
         dapui.setup()
-
         -- setup an event listener for when the debugger is launched
         dap.listeners.before.launch.dapui_config = function()
-            -- when the debugger is launched open up the debug ui
             dapui.open()
         end
 
-        -- set a vim motion for <Space> + d + t to toggle a breakpoint at the line where the cursor is currently on
         vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, {
-            desc = "[D]ebug [T]oggle Breakpoint"
+            desc = "DAP: [D]ebug [T]oggle Breakpoint"
+        })
+        vim.keymap.set("n", "<leader>dl", dap.list_breakpoints, {
+            desc = "DAP: List Breakpoints"
         })
 
-        -- set a vim motion for <Space> + d + s to start the debugger and launch the debugging ui
-        vim.keymap.set("n", "<leader>ds", dap.continue, {
-            desc = "[D]ebug [S]tart"
+        vim.keymap.set("n", "<leader>dsu", dap.up, {
+            desc = "DAP: [S]tackTrace [U]p"
+        })
+
+        vim.keymap.set("n", "<leader>dsd", dap.down, {
+            desc = "DAP: [S]tackTrace [D]own"
+        })
+        vim.keymap.set("n", "<leader>db", dap.step_back, {
+            desc = "DAP: Step back"
+        })
+
+        vim.keymap.set("n", "<F9>", dap.continue, {
+            desc = "DAP: Next breakpoint"
+        })
+
+        vim.keymap.set("n", "<F8>", dap.step_over, {
+            desc = "DAP: Step over"
+        })
+
+        vim.keymap.set("n", "<F7>", dap.step_into, {
+            desc = "DAP: Step into"
+        })
+
+        vim.keymap.set("n", "<leader>de", function()
+            dapui.eval(nil, {
+                enter = true
+            })
+        end, {
+            desc = "DAP: [D]ebug [E]valuate"
         })
 
         -- set a vim motion to close the debugging ui
-        vim.keymap.set("n", "<leader>dc", dapui.close, {
-            desc = "[D]ebug [C]lose"
+        vim.keymap.set("n", "<leader>dq", function()
+            dap.terminate()
+            dapui.close()
+        end, {
+            desc = "DAP: [D]ebug [Q]uit"
         })
     end
 }
