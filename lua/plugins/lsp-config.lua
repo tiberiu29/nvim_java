@@ -74,7 +74,7 @@ return {{
 
         -- 
         -- LIST LSP ATTACHED for debugging if something goes wrong
-        vim.keymap.set("n", "<leader>ci", function()
+        vim.keymap.set("n", "<leader>cip", function()
             local clients = vim.lsp.get_clients({
                 bufnr = 0
             })
@@ -87,7 +87,7 @@ return {{
             end
             vim.notify(table.concat(lines, "\n"))
         end, {
-            desc = "[C]ode [I]nfo"
+            desc = "[C]ode [I]nfo [L]sp"
         })
 
     end
