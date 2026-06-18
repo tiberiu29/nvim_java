@@ -1,7 +1,14 @@
 FROM archlinux:base
 
+RUN sed -i '/NoExtract.*usr\/share\/man/d' /etc/pacman.conf && \
+    sed -i '/NoExtract.*usr\/share\/doc/d' /etc/pacman.conf && \
+    sed -i '/NoExtract.*usr\/share\/info/d' /etc/pacman.conf
+
+
 RUN pacman -Syu --noconfirm && \
-    pacman -S --noconfirm \
+    pacman -S --noconfirm --overwrite '*' \
+      which \
+      man-db man-pages less \
       vim git curl gcc make unzip tar gzip ripgrep \
       python uv \
       jdk25-openjdk maven \
@@ -18,5 +25,7 @@ ENV PATH="/opt/nvim-linux-x86_64/bin:${PATH}"
 COPY . /root/.config/nvim
 
 RUN rm -f /root/.config/nvim/Dockerfile /root/.config/nvim/.dockerignore
+
+RUN mandb
 
 WORKDIR /projects
