@@ -9,6 +9,7 @@ RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm --overwrite '*' \
       which \
       man-db man-pages less \
+      tmux \
       vim git curl gcc make unzip tar gzip ripgrep \
       python uv \
       jdk25-openjdk maven \
