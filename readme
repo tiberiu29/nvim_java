@@ -1,0 +1,29 @@
+Add these as ~zsh:
+
+
+cdev() {
+  local docker_dir="$1"
+  local bind_path="$2"
+  local image="$3"
+
+  docker build \
+    -t "$image" \
+    -f "$docker_dir/Dockerfile" \
+    "$docker_dir" \
+  && \
+  docker run \
+    --rm \
+    -it \
+    --name "$image" \
+    -v "$bind_path:/workspace" \
+    -w /workspace \
+    "$image" \
+    /bin/bash
+}
+
+
+EX usage:
+cdev \
+  /Users/tibi/dev/env_nvim_java/nvim_java \
+  /Users/tibi/dev/c-playground \
+  c-playground

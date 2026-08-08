@@ -8,6 +8,7 @@ do return {
             "vim",
             "vimdoc",
             "lua",
+            "c",
             "java",
             "json",
             "tsx",

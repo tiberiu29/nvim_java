@@ -7,7 +7,7 @@ return {{
     "williamboman/mason-lspconfig.nvim",
     config = function()
         require("mason-lspconfig").setup({
-            ensure_installed = {"lua_ls", "jdtls"}
+            ensure_installed = {"lua_ls", "jdtls", "clangd"}
         })
     end
 }, {
@@ -49,6 +49,24 @@ return {{
         }
 
         vim.lsp.enable("lua_ls")
+
+
+        vim.lsp.config["clangd"] = {
+            cmd = {"clangd"},
+            filetypes = {"c", "cpp"},
+
+            -- enable CMP in clangd
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+
+            root_markers = {
+               "compile_commands.json",
+               "compile_flags.txt",
+               ".git",
+            },
+        }
+
+        vim.lsp.enable("clang")
+
 
         vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {
             desc = "[C]ode [H]over documentation"
