@@ -32,6 +32,7 @@ do return {
                 "vim",
                 "help",
                 "lua",
+                "c",
                 "java",
                 "json",
                 "typescriptreact",
