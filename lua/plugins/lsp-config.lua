@@ -65,7 +65,7 @@ return {{
             },
         }
 
-        vim.lsp.enable("clang")
+        vim.lsp.enable("clangd")
 
 
         vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, {
