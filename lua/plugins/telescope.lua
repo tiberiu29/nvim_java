@@ -1,6 +1,9 @@
 return {{
     'nvim-telescope/telescope.nvim',
-    dependencies = {'nvim-lua/plenary.nvim'},
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
+    },
     config = function()
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
@@ -13,7 +16,9 @@ return {{
                 layout_config = {
                     width = 0.95,
                     height = 0.95,
-                    preview_width = 0.45
+                    horizontal = {
+                        preview_width = 0.45,
+                    },
                 },
                 mappings = {
                     i = {
@@ -60,21 +65,5 @@ return {{
             desc = "[F]ind existing [B]uffers"
         })
     end
-}, {
-    'nvim-telescope/telescope-ui-select.nvim',
-    config = function()
-        local actions = require("telescope.actions")
-        require("telescope").setup({
-            extensions = {
-                ["ui-select"] = {require("telescope.themes").get_dropdown {}}
-            },
-            mappings = {
-                i = {
-                    ["<C-n>"] = actions.cycle_history_next,
-                    ["<C-p>"] = actions.cycle_history_prev
-                }
-            },
-            require("telescope").load_extension("ui-select")
-        })
-    end
-}}
+},
+}
