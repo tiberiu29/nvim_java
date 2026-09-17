@@ -10,7 +10,7 @@ RUN pacman -Syu --noconfirm && \
       which \
       man-db man-pages less \
       tmux \
-      vim git curl gcc make unzip tar gzip ripgrep \
+      vim git curl gcc make gdb unzip tar gzip ripgrep \
       python uv \
       jdk25-openjdk maven \
       tree-sitter-cli && \
