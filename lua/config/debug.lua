@@ -5,6 +5,36 @@
 local map = vim.keymap.set
 
 -- ---------------------------------------------------------------------------
+-- Where was something defined?
+-- ---------------------------------------------------------------------------
+
+-- Inspect where a key mapping was defined.
+map("n", "<leader>dv", function()
+    local key = vim.fn.getcharstr()
+    local readable = vim.fn.keytrans(key)
+
+    vim.cmd("verbose nmap " .. readable)
+end, {
+    desc = "Debug: inspect mapping",
+})
+
+-- Inspect an option and where it was last set.
+map("n", "<leader>do", function()
+    vim.ui.input({
+        prompt = "Option: ",
+    }, function(option)
+        if not option or option == "" then
+            return
+        end
+
+        vim.cmd("verbose set " .. option .. "?")
+    end)
+end, {
+    desc = "Debug: inspect option",
+})
+
+
+-- ---------------------------------------------------------------------------
 -- Key input
 -- ---------------------------------------------------------------------------
 
@@ -16,7 +46,6 @@ map("n", "<leader>dk", function()
 end, {
     desc = "Debug: inspect key",
 })
-
 
 -- ---------------------------------------------------------------------------
 -- Highlighting
@@ -81,4 +110,46 @@ map("n", "<leader>dm", "<cmd>messages<CR>", {
 -- Run all Neovim health checks.
 map("n", "<leader>dc", "<cmd>checkhealth<CR>", {
     desc = "Debug: check health",
+})
+
+-- ---------------------------------------------------------------------------
+-- Runtime / Buffer / Autocommands
+-- ---------------------------------------------------------------------------
+
+-- Inspect autocommands registered for an event and where they were defined.
+map("n", "<leader>da", function()
+    vim.ui.input({
+        prompt = "Autocmd event: ",
+    }, function(event)
+        if not event or event == "" then
+            return
+        end
+
+        vim.cmd("verbose autocmd " .. event)
+    end)
+end, {
+    desc = "Debug: inspect autocmd",
+})
+
+
+-- Show information about the current file and buffer.
+map("n", "<leader>df", function()
+    vim.notify(
+        "File: " .. vim.fn.expand("%:p")
+        .. "\nFiletype: " .. vim.bo.filetype
+        .. "\nEncoding: " .. vim.bo.fileencoding
+        .. "\nFormat: " .. vim.bo.fileformat
+        .. "\nBuffer: " .. vim.api.nvim_get_current_buf()
+    )
+end, {
+    desc = "Debug: buffer info",
+})
+
+
+-- Show Neovim's runtime path.
+-- Useful for debugging config/plugin loading.
+map("n", "<leader>dr", function()
+    vim.print(vim.opt.runtimepath:get())
+end, {
+    desc = "Debug: runtime path",
 })
