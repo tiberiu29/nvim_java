@@ -30,6 +30,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("config.options")
 require("config.keymaps")
+require("config.debug")
 require("config.autocmds")
 
 -- Initialize lazy should always stay at end

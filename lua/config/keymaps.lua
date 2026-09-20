@@ -2,15 +2,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Check what a combination of key represents in nvim
-vim.keymap.set("n", "<leader>k", function()
-    local key = vim.fn.getcharstr()
-    local readable = vim.fn.keytrans(key)
-    print(readable)
-end, {
-    desc = "Inspect key"
-})
-
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
     desc = "Remove search highlights"
 })
