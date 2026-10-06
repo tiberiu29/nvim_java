@@ -11,6 +11,7 @@ RUN pacman -Syu --noconfirm && \
       man-db man-pages less \
       tmux \
       vim git curl gcc make gdb unzip tar gzip ripgrep \
+      nasm \
       python uv \
       jdk25-openjdk maven \
       tree-sitter-cli && \
