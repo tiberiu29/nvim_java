@@ -40,12 +40,12 @@ vim.keymap.set("v", ">", ">gv", {
 })
 
 -- Go to previous location
-vim.keymap.set("n", "<M-Left>", "<C-o>", {
+vim.keymap.set("n", "<C-Left>", "<C-o>", {
     desc = "Jump Back"
 })
 
 -- Go to next location
-vim.keymap.set("n", "<M-Right>", "<C-i>", {
+vim.keymap.set("n", "<C-Right>", "<C-i>", {
     desc = "Jump Forward"
 })
 
